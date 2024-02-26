@@ -4,7 +4,6 @@ FROM confluentinc/cp-kafka:latest
 # Exponera porten
 EXPOSE 9092
 
-# Ange miljövariabler
 ENV CLUSTER_ID=W5CaV_08RiaRypEHwYPchA \
     KAFKA_NODE_ID=1 \
     KAFKA_PROCESS_ROLES=broker,controller \
@@ -16,7 +15,8 @@ ENV CLUSTER_ID=W5CaV_08RiaRypEHwYPchA \
     KAFKA_LOG_DIRS=/var/lib/kafka/data \
     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
     KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1 \
-    KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+    KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1 \
+    KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka.app.cloud.cbh.kth.se:9092
 
 # Starta Kafka
 CMD ["kafka-server-start", "/etc/kafka/server.properties"]
